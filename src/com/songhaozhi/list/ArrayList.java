@@ -161,8 +161,9 @@ public class ArrayList implements List<Integer> {
         /**
          * 假设size=5;当index也等于5的时候是允许添加的，相当于往最后面一位添加
          */
-        if (index > size || index < 0)
+        if (index > size || index < 0) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+        }
     }
 
     /**
