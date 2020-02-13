@@ -63,14 +63,14 @@ public class ArrayList implements List<Integer> {
     /**
      * 例子:假设元素为11,22,33,44,55
      * 如果传来的index为2,我们就需要把33,44,55向后挪动一位，也就是index到size-1的范围
-     *
+     * <p>
      * 删除操作是通过下标将元素一个个往前面挪动，而添加则是最后开始一个个往后挪动。
      * 因为11,22,33,44,55加入33往后挪动则会覆盖掉44，再往后挪动依然是33覆盖55,所以需要反着来
-     *
+     * <p>
      * for (int i = size - 1; i >= index; i--) {
-     *      elementData[i + 1] = elementData[i];
+     * elementData[i + 1] = elementData[i];
      * }
-     *
+     * <p>
      * 第1遍循环 i = (5-1) = 4;index=2;
      * elementData[5] = elementData[4];
      * 第2遍循环 i = 3;index=2;
@@ -81,11 +81,40 @@ public class ArrayList implements List<Integer> {
     @Override
     public void add(int index, Integer element) {
         rangeCheckForAdd(index);
+
+        //如果容量不够，则扩容
+        ensureCapacity(size + 1);
+
         for (int i = size - 1; i >= index; i--) {
             elementData[i + 1] = elementData[i];
         }
         elementData[index] = element;
         size++;
+    }
+
+    /**
+     * 保证要有capacity的容量
+     *
+     * @param capacity 至少需要的容量
+     */
+    private void ensureCapacity(int capacity) {
+        //旧容量为目前数据的长度
+        int oldCapacity = elementData.length;
+        //如果旧容量大于等于至少需要的容量则不需要扩容
+        if (oldCapacity >= capacity) {
+            return;
+        }
+        //新的容量为旧容量的1.5倍
+        int newCapacity = oldCapacity + (oldCapacity >> 1);
+        //创建一个新的数组
+        int[] newelementData = new int[newCapacity];
+        //将旧数组中的所有元素移动到新数组中
+        for (int i = 0; i < size; i++) {
+            newelementData[i] = elementData[i];
+        }
+        //将elementData指向newelementData;
+        elementData = newelementData;
+        System.out.println("旧容量为"+oldCapacity+"扩容以后"+newCapacity);
     }
 
     @Override
@@ -100,7 +129,7 @@ public class ArrayList implements List<Integer> {
 
     /**
      * 删除操作是挪动所需要删除元素的下标后一位到数组的最后一位
-     *
+     * <p>
      * 例子:假设元素为11,22,33,44,55
      * 如果传来的index为2,则需要删除元素为33,所以需要把44,55向前一位挪动
      * 所以挪动的下标就是3和4，也就是 index + 1 到 size - 1
