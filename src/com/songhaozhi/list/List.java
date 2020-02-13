@@ -1,6 +1,9 @@
 package com.songhaozhi.list;
 
-public interface List<T> {
+/**
+ * @author songhaozhi
+ */
+public interface List<E> {
 
     /**
      * 返回列表中元素的个数
@@ -15,35 +18,35 @@ public interface List<T> {
     /**
      * 该列表是否包含指定的元素
      *
-     * @param element
+     * @param e
      * @return
      */
-    boolean contains(int element);
+    boolean contains(E e);
 
     /**
      * 添加元素
      *
-     * @param t
+     * @param e
      * @return
      */
-    void add(T t);
+    void add(E e);
 
     /**
      * 插入元素到指定的下标位置
      *
      * @param index
-     * @param t
+     * @param e
      */
-    void add(int index, T t);
+    void add(int index, E e);
 
     /**
      * 设置index位置的元素
      *
      * @param index
-     * @param t
+     * @param e
      * @return 原来的元素
      */
-    T set(int index, T t);
+    E set(int index, E e);
 
 
     /**
@@ -52,7 +55,7 @@ public interface List<T> {
      * @param index
      * @return 原来的元素
      */
-    int remove(int index);
+    E remove(int index);
 
     /**
      * 清空列表元素
@@ -65,13 +68,13 @@ public interface List<T> {
      * @param index 下标
      * @return
      */
-    T get(int index);
+    E get(int index);
 
     /**
      * 返回指定元素第一次出现的下标
      *
-     * @param element
+     * @param e
      * @return
      */
-    int indexOf(int element);
+    int indexOf(E e);
 }

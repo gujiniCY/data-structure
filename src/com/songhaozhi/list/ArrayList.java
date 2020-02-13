@@ -2,8 +2,10 @@ package com.songhaozhi.list;
 
 /**
  * 创建一个可以增删改查int类型值的ArrayList
+ *
+ * @author songhaozhi
  */
-public class ArrayList implements List<Integer> {
+public class ArrayList<E> implements List<E> {
     /**
      * 该ArrayList包含的元素数量
      */
@@ -11,7 +13,7 @@ public class ArrayList implements List<Integer> {
     /**
      * 存放元素的数组
      */
-    private int[] elementData;
+    transient Object[] elementData;
     /**
      * 默认数组创建容量
      */
@@ -30,7 +32,7 @@ public class ArrayList implements List<Integer> {
     public ArrayList(int capacity) {
         //当capacity小于DEFAULT_CAPACITY的时候使用初始值
         capacity = Math.max(capacity, DEFAULT_CAPACITY);
-        this.elementData = new int[capacity];
+        this.elementData = new Object[capacity];
     }
 
     /**
@@ -51,12 +53,12 @@ public class ArrayList implements List<Integer> {
     }
 
     @Override
-    public boolean contains(int element) {
+    public boolean contains(E element) {
         return indexOf(element) != ELEMENT_NOT_FOUND;
     }
 
     @Override
-    public void add(Integer element) {
+    public void add(E element) {
         add(size, element);
     }
 
@@ -79,7 +81,7 @@ public class ArrayList implements List<Integer> {
      * elementData[3] = elementData[2];
      */
     @Override
-    public void add(int index, Integer element) {
+    public void add(int index, E element) {
         rangeCheckForAdd(index);
 
         //如果容量不够，则扩容
@@ -107,21 +109,21 @@ public class ArrayList implements List<Integer> {
         //新的容量为旧容量的1.5倍
         int newCapacity = oldCapacity + (oldCapacity >> 1);
         //创建一个新的数组
-        int[] newelementData = new int[newCapacity];
+        E[] newElementData = (E[]) new Object[newCapacity];
         //将旧数组中的所有元素移动到新数组中
         for (int i = 0; i < size; i++) {
-            newelementData[i] = elementData[i];
+            newElementData[i] = elementData(i);
         }
         //将elementData指向newelementData;
-        elementData = newelementData;
-        System.out.println("旧容量为"+oldCapacity+"扩容以后"+newCapacity);
+        elementData = newElementData;
+        System.out.println("旧容量为" + oldCapacity + "扩容以后" + newCapacity);
     }
 
     @Override
-    public Integer set(int index, Integer element) {
+    public E set(int index, E element) {
         rangeCheck(index);
         //取出原来的元素
-        int old = elementData[index];
+        E old = elementData(index);
         //通过下标设置新值
         elementData[index] = element;
         return old;
@@ -135,10 +137,10 @@ public class ArrayList implements List<Integer> {
      * 所以挪动的下标就是3和4，也就是 index + 1 到 size - 1
      */
     @Override
-    public int remove(int index) {
+    public E remove(int index) {
         rangeCheck(index);
         //取出原来的元素
-        int old = elementData[index];
+        E old = elementData(index);
         for (int i = index + 1; i <= size - 1; i++) {
             elementData[i - 1] = elementData[i];
         }
@@ -153,14 +155,19 @@ public class ArrayList implements List<Integer> {
         size = 0;
     }
 
-    @Override
-    public Integer get(int index) {
-        rangeCheck(index);
-        return elementData[index];
+    @SuppressWarnings("unchecked")
+    E elementData(int index) {
+        return (E) elementData[index];
     }
 
     @Override
-    public int indexOf(int element) {
+    public E get(int index) {
+        rangeCheck(index);
+        return elementData(index);
+    }
+
+    @Override
+    public int indexOf(E element) {
         //遍历数组，如果当前下标的元素等于element则返回下标i
         for (int i = 0; i < size; i++) {
             if (elementData[i] == element) {
@@ -205,7 +212,11 @@ public class ArrayList implements List<Integer> {
         return "Index: " + index + ", Size: " + this.size;
     }
 
-
+    /**
+     * 重写toString();
+     *
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder();
