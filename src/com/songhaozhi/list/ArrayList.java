@@ -146,12 +146,26 @@ public class ArrayList<E> implements List<E> {
         }
         //移动以后size--
         size--;
+        //清除掉数组里面的最后一个元素
+        elementData[size] = null;
+        /**
+         * 可以合并为一句，先减size然后清空最后一个元素
+         * elementData[--size] = null;
+         */
         return old;
     }
 
     @Override
     public void clear() {
-        //只要把size设置为0以后，用户访问不到就可以了，不需要重新创建数组
+        /**
+         * 因为是泛型，如果是对象
+         * elementData数组中保留的是对象的地址，
+         * 所以clear()方法需要把对象的引用指向null，
+         * 避免浪费内存
+         */
+        for (int i = 0; i < size; i++) {
+            elementData[i] = null;
+        }
         size = 0;
     }
 
@@ -168,10 +182,19 @@ public class ArrayList<E> implements List<E> {
 
     @Override
     public int indexOf(E element) {
-        //遍历数组，如果当前下标的元素等于element则返回下标i
-        for (int i = 0; i < size; i++) {
-            if (elementData[i] == element) {
-                return i;
+        //如果element为null则返回第一个null元素的位置
+        if (element == null) {
+            for (int i = 0; i < size; i++) {
+                if (elementData[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            //遍历数组，如果当前下标的元素等于element则返回下标i
+            for (int i = 0; i < size; i++) {
+                if (element.equals(elementData[i])) {
+                    return i;
+                }
             }
         }
         return ELEMENT_NOT_FOUND;
