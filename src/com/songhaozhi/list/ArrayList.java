@@ -79,6 +79,8 @@ public class ArrayList<E> implements List<E> {
      * elementData[4] = elementData[3];
      * 第3遍循环 i = 2;index=2;
      * elementData[3] = elementData[2];
+     *
+     * 后期修改了条件，具体看https://github.com/gujiniCY/data-structure/commit/ed8e955185fcb0bb8ad6188c3f26e671dc41fbae
      */
     @Override
     public void add(int index, E element) {
@@ -135,6 +137,8 @@ public class ArrayList<E> implements List<E> {
      * 例子:假设元素为11,22,33,44,55
      * 如果传来的index为2,则需要删除元素为33,所以需要把44,55向前一位挪动
      * 所以挪动的下标就是3和4，也就是 index + 1 到 size - 1
+     *
+     * 后期修改了条件，具体看https://github.com/gujiniCY/data-structure/commit/ed8e955185fcb0bb8ad6188c3f26e671dc41fbae
      */
     @Override
     public E remove(int index) {
