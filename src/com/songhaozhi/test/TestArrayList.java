@@ -12,5 +12,11 @@ public class TestArrayList {
         list.add("4543");
         list.add("啊实打实");
         System.out.println(list);
+
+        list.add(1,"asdasd");
+        System.out.println(list);
+
+        list.remove(4);
+        System.out.println(list);
     }
 }

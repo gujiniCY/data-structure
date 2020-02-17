@@ -87,8 +87,8 @@ public class ArrayList<E> implements List<E> {
         //如果容量不够，则扩容
         ensureCapacity(size + 1);
 
-        for (int i = size - 1; i >= index; i--) {
-            elementData[i + 1] = elementData[i];
+        for (int i = size; i > index; i--) {
+            elementData[i] = elementData[i - 1];
         }
         elementData[index] = element;
         size++;
@@ -141,7 +141,7 @@ public class ArrayList<E> implements List<E> {
         rangeCheck(index);
         //取出原来的元素
         E old = elementData(index);
-        for (int i = index + 1; i <= size - 1; i++) {
+        for (int i = index + 1; i < size; i++) {
             elementData[i - 1] = elementData[i];
         }
         //移动以后size--
