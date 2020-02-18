@@ -6,6 +6,11 @@ package com.songhaozhi.arraylist;
 public interface List<E> {
 
     /**
+     * -1
+     */
+    int ELEMENT_NOT_FOUND = -1;
+
+    /**
      * 返回列表中元素的个数
      */
     int size();
