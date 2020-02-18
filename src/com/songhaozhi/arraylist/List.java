@@ -1,4 +1,4 @@
-package com.songhaozhi.list;
+package com.songhaozhi.arraylist;
 
 /**
  * @author songhaozhi

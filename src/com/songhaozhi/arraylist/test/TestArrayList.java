@@ -1,6 +1,6 @@
-package com.songhaozhi.test;
+package com.songhaozhi.arraylist.test;
 
-import com.songhaozhi.list.ArrayList;
+import com.songhaozhi.arraylist.ArrayList;
 
 public class TestArrayList {
 

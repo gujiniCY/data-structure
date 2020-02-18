@@ -1,4 +1,4 @@
-package com.songhaozhi.list;
+package com.songhaozhi.arraylist;
 
 /**
  * 创建一个可以增删改查int类型值的ArrayList
