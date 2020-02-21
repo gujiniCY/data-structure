@@ -1,6 +1,6 @@
-package com.songhaozhi.arraylist.test;
+package com.songhaozhi.线性表.动态数组.test;
 
-import com.songhaozhi.arraylist.ArrayList;
+import com.songhaozhi.线性表.动态数组.ArrayList;
 
 public class TestArrayList {
 

@@ -1,4 +1,6 @@
-package com.songhaozhi.linkedlist;
+package com.songhaozhi.线性表.动态数组;
+
+import com.songhaozhi.线性表.链表.AbstractList;
 
 /**
  * 可以缩容的ArrayList
@@ -10,7 +12,7 @@ package com.songhaozhi.linkedlist;
  *
  * @author songhaozhi
  */
-public class ArrayList2<E> extends AbstractList<E> {
+public class ArrayList3<E> extends AbstractList<E> {
     /**
      * 存放元素的数组
      */
@@ -25,7 +27,7 @@ public class ArrayList2<E> extends AbstractList<E> {
      *
      * @param capacity
      */
-    public ArrayList2(int capacity) {
+    public ArrayList3(int capacity) {
         //当capacity小于DEFAULT_CAPACITY的时候使用初始值
         capacity = Math.max(capacity, DEFAULT_CAPACITY);
         this.elementData = new Object[capacity];
@@ -34,7 +36,7 @@ public class ArrayList2<E> extends AbstractList<E> {
     /**
      * 默认构造方法
      */
-    public ArrayList2() {
+    public ArrayList3() {
         this(DEFAULT_CAPACITY);
     }
 

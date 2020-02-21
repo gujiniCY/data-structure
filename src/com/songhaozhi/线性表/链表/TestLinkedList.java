@@ -1,4 +1,4 @@
-package com.songhaozhi.linkedlist;
+package com.songhaozhi.线性表.链表;
 
 public class TestLinkedList {
 

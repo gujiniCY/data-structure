@@ -1,4 +1,4 @@
-package com.songhaozhi.arraylist;
+package com.songhaozhi.线性表.动态数组;
 
 /**
  * @author songhaozhi

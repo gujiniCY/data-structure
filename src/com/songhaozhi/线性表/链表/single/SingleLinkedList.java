@@ -1,11 +1,13 @@
-package com.songhaozhi.linkedlist;
+package com.songhaozhi.线性表.链表.single;
+
+import com.songhaozhi.线性表.链表.AbstractList;
 
 /**
- * 链表
+ * 单向链表
  *
  * @author songhaozhi
  */
-public class LinkedList<E> extends AbstractList<E> {
+public class SingleLinkedList<E> extends AbstractList<E> {
     /**
      * 指向链表的第一个元素
      */
@@ -33,6 +35,11 @@ public class LinkedList<E> extends AbstractList<E> {
      */
     @Override
     public void add(int index, E e) {
+        /**
+         * 最好:O(1)
+         * 最坏:O(n)
+         * 平均:O(n)
+         */
         rangeCheckForAdd(index);
         if (index == 0) {
             first = new Node<>(e, first);
@@ -46,6 +53,11 @@ public class LinkedList<E> extends AbstractList<E> {
 
     @Override
     public E set(int index, E e) {
+        /**
+         * 最好:O(1)
+         * 最坏:O(n)
+         * 平均:O(n)
+         */
         //取出原来的node
         Node<E> node = node(index);
         //取出原来存储的元素
@@ -84,6 +96,11 @@ public class LinkedList<E> extends AbstractList<E> {
 
     @Override
     public E get(int index) {
+        /**
+         * 最好:O(1)
+         * 最坏:O(n)
+         * 平均:O(n)
+         */
         return node(index).element;
     }
 

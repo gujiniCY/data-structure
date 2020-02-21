@@ -1,11 +1,15 @@
-package com.songhaozhi.linkedlist;
+package com.songhaozhi.线性表.动态数组;
 
 /**
- * 代码重用的ArrayList
+ * 创建一个可以增删改查的ArrayList
  *
  * @author songhaozhi
  */
-public class ArrayList<E> extends AbstractList<E>{
+public class ArrayList<E> implements List<E> {
+    /**
+     * 该ArrayList包含的元素数量
+     */
+    private int size = 0;
     /**
      * 存放元素的数组
      */
@@ -14,6 +18,12 @@ public class ArrayList<E> extends AbstractList<E>{
      * 默认数组创建容量
      */
     public static final int DEFAULT_CAPACITY = 10;
+    /**
+     * -1
+     */
+    public static final int ELEMENT_NOT_FOUND = -1;
+
+
     /**
      * 可传定制初始容量的构造方法
      *
@@ -30,6 +40,21 @@ public class ArrayList<E> extends AbstractList<E>{
      */
     public ArrayList() {
         this(DEFAULT_CAPACITY);
+    }
+
+    @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
+    public boolean contains(E element) {
+        return indexOf(element) != ELEMENT_NOT_FOUND;
     }
 
     @Override
@@ -178,6 +203,42 @@ public class ArrayList<E> extends AbstractList<E>{
         }
         return ELEMENT_NOT_FOUND;
     }
+
+    /**
+     * 检查index的范围
+     *
+     * @param index
+     */
+    private void rangeCheck(int index) {
+        if (index < 0 || index >= this.size) {
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+        }
+    }
+
+    /**
+     * 根据范围添加检测的范围
+     *
+     * @param index
+     */
+    private void rangeCheckForAdd(int index) {
+        /**
+         * 假设size=5;当index也等于5的时候是允许添加的，相当于往最后面一位添加
+         */
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+        }
+    }
+
+    /**
+     * 返回一个异常详细信息
+     *
+     * @param index
+     * @return
+     */
+    private String outOfBoundsMsg(int index) {
+        return "Index: " + index + ", Size: " + this.size;
+    }
+
     /**
      * 重写toString();
      *

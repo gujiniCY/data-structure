@@ -1,6 +1,6 @@
-package com.songhaozhi.linkedlist;
+package com.songhaozhi.线性表.链表;
 
-import com.songhaozhi.arraylist.List;
+import com.songhaozhi.线性表.动态数组.List;
 
 /**
  * 公共代码

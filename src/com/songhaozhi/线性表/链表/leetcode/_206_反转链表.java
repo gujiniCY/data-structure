@@ -1,4 +1,4 @@
-package com.songhaozhi.linkedlist.leetcode;
+package com.songhaozhi.线性表.链表.leetcode;
 
 /**
  * 反转一个单链表。
