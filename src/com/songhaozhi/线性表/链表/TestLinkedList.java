@@ -6,7 +6,10 @@ import com.songhaozhi.线性表.链表.circle.CircleLinkedList;
 public class TestLinkedList {
 
     public static void main(String[] args) {
-        List<String> list = new CircleLinkedList<>();
+        StringBuilder builder= new StringBuilder();
+        System.out.println(builder.toString());
+        System.out.println("builder.toString()");
+       /* List<String> list = new CircleLinkedList<>();
         list.add("11");
         list.add("22");
         list.add("33");
@@ -20,6 +23,6 @@ public class TestLinkedList {
         System.out.println(list);
         list.remove(0);
         System.out.println(list);
-        System.out.println(list.indexOf("11"));
+        System.out.println(list.indexOf("11"));*/
     }
 }
